@@ -61,7 +61,7 @@ public class Tree
         Queue<Node>q=new LinkedList<>();
         q.add(root);
         int i=1;
-        while(i<n-1){
+        while(i<n){
             Node temp=q.remove();
             Node left=new Node(10);
             Node right=new Node(200);
@@ -70,6 +70,7 @@ public class Tree
                 int l=Integer.parseInt(arr[i]);
                 left.val=l;q.add(left);
             }
+            i++;
             if(arr[i].equals(""))  right=null;
             else{
                 int r=Integer.parseInt(arr[i]);
@@ -77,42 +78,27 @@ public class Tree
                 q.add(right);
 
             }
+            i++;
             temp.left=left;
             temp.right=right;
-            i=i+2;
+//            i=i+2;
 
         }
         return root;
     }
     public static void main (String[] args)
     {
-       Node root=new Node(1);
-        Node a=new Node(2);
-        Node b=new Node(3);
-        root.left=a;
-        root.right=b;
-        Node c=new Node(4);
-        a.left=c;
-        Node d=new Node(5);
-        a.right=d;
-        Node e=new Node(6);
-        b.left=e;
-        Node f=new Node(7);
-        b.right=f;
-        Node g=new Node(8);
-        f.left=g;
-        Node h=new Node(9);
-         f.right=h;
-        Node root2=new Node(Integer.MAX_VALUE);
-        root2.left=root;
-        display(root2);
+        String []arr={
+                "1","2","3","4","5","","6","","7","","","8","","","","9","","10","11","12","","","","13","14"
+        };
+        Node root=ConstructBfs(arr);
         System.out.println();
         System.out.println("total sum = "+Sum(root));
         System.out.println( "height of the tree is-> "+calculate_height(root));
         BfsTreversal_of_tree(root);
         System.out.println();
         int v=calculate_height(root);
-        for (int i=1;i<=v;i++){
+        for (int i=1;i<=v+1;i++){
             System.out.print(i+"th level is-> ");
             nthLevel(root,i);
             System.out.println();
